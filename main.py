@@ -74,7 +74,7 @@ def etiketle(df,karar_range=7):
             #decides = ["sat" if sum([c for c in df[i+1:i+karar_range]["change"]])<0 else "al" for i in range(index-karar_range,index)]
             #Y.append(expect(decides,buySellPrices))
 
-            print("Y:",Y[index+1-karar_range],"\nchanges:",changes[(index-karar_range)+1:index-1],"\nfiyatlar:",prices[(index-karar_range)+1:index])
+            #print("Y:",Y[index+1-karar_range],"\nchanges:",changes[(index-karar_range)+1:index-1],"\nfiyatlar:",prices[(index-karar_range)+1:index])
     for i in range(len(Y),len(changes),1):
         Y.append(-1 if changes[i]<0 else 1)
     Y.append(0)
@@ -158,9 +158,9 @@ def prepare_dataset(stock):
     X = stock.iloc[:, ~stock.columns.isin(['timestamp', 'open', 'high', 'low', 'close'])]
     X.fillna(0)
     X.replace({-np.inf: -1_000_000, np.inf: 1_000_000}, inplace=True)
-    print(X.columns)
-    print("len of column:", len(X.columns), " len of rows:", len(X))
-    print("len of Y: ", len(Y))
+    #print(X.columns)
+    #print("len of column:", len(X.columns), " len of rows:", len(X))
+    #print("len of Y: ", len(Y))
 
     # or (index,x),y in zip(stock.iterrows(),Y):
     #    print((x["high"]+x["low"])/2,y)
@@ -215,7 +215,7 @@ def main():
     spot_asset = "BTC"
     coin_pair = spot_asset + '/USDT'
     limit = 2
-    amount = 20  # $ dolar
+    amount = 40  # $ dolar
     #ex = Exchange(spot_asset, exchange, yuzde, limit=limit)
     t=0
     last_d = 0
@@ -228,7 +228,7 @@ def main():
     while (cont):
         t+=1
         if(t==60*60):
-            logger.info("AI modeli yenileniyor:" + str(datetime.datetime.now()))
+            logger.info("AI modeli yenileniyor:")
             print("ana veri cekiliyor:")
             stock, exchange = load_data()
             plist.ex = exchange
@@ -241,7 +241,7 @@ def main():
             t=0
         try:
             price = round(get_price(exchange), 2)
-            if(len(ever_prices)>40):
+            if(len(ever_prices)>50):
                 ever_prices = ever_prices[1:] #ilkini sil
             ever_prices.append(price)
 
@@ -250,19 +250,19 @@ def main():
                     ever_max_price = max(ever_prices)
                     miktar = amount / float(ever_max_price)
                     toplam_kar += plist.evaluate(ever_max_price, miktar, "sell")
-                    logger.info("gelmiş geçmiş en büyük değer satis emri acildi:",ever_max_price, " - k: ",toplam_kar)
+                    logger.info("gelmiş geçmiş en büyük değer SATİS emri yakalandi: {} ",ever_max_price)
                     sleep(1)
                 elif(min(ever_prices)<ever_min_price ):
                     ever_min_price = min(ever_prices)
                     miktar = amount / float(ever_min_price)
                     toplam_kar += plist.evaluate(ever_min_price, miktar, "buy")
-                    logger.info("gelmiş geçmiş en büyük değer satis emri acildi:",ever_min_price, " - k: ",toplam_kar)
+                    logger.info("gelmiş geçmiş en büyük değer  ALİS emri yakalandi: {}",ever_min_price)
                     sleep(1)
 
             x = last(exchange,coin_pair,t_frame = '1m')
             #decision - sign degisimi tespit edilir. -'ye gectiginde sat, +ya degistiginde al. pozisyon kapatilir.
             d = model.predict([x])
-            logger.info("d:",d," bir onceki karar:",last_d)
+            #logger.info("d:",d," bir onceki karar:",last_d)
 
 
             old_prices.append(price)
@@ -278,7 +278,7 @@ def main():
                 decision = "keep"
             last_d = d
             miktar = amount / float(price)  # kac adet alinacagi - ilgili para biriminin degerini, ortaya koymak istedigimiz dolara boluyoruz
-            logger.info("price:",price,"miktar:",miktar,"decision",decision)
+            #logger.info("price:",price,"miktar:",miktar,"decision",decision)
 
             #ex.order(price, miktar, decision)
             #decision="buy"
@@ -293,24 +293,25 @@ def main():
                 elif(decision=="keep" and len(plist.list)>0 and  plist.list[0].state=="buy"):
                     price = max(old_prices)
                     decision="sell"
-                logger.info("eski fiyat sayisi", len(old_prices)," oldu. karar:",decision," - price:",price)
+                logger.info("Oldprice Birikti!  eski fiyat sayisi {} - KARAR: {} - PRICE:{}", len(old_prices),decision,price)
                 old_prices=[]
-
+            #decision="buy"
             plist.evaluate(price,miktar,decision)
-            logger.info("\ntoplam kar:", plist.toplam_kar,"\n")
+            logger.info("toplam kar: {}\n\n", plist.toplam_kar)
             balances = exchange.fetchBalance()["info"]["balances"]
             assets = ["BTC", "USDT"]
             for b in balances:
                 if (b["asset"] in assets):
-                    logger.info(b["asset"] + " : " + b["free"] + "(free)   -   " + b["locked"] + "(locked)\n")
-            logger.info("Pozisyon listesi:\n ")
-            for p in plist.list:
-                logger.info(p)
+                    logger.info("{}  -  {} (free) : {} (locked)", b["asset"] , b["free"] ,b["locked"])
+            if(len(plist.list)>0):
+                logger.info("Pozisyon listesi:")
+                for p in plist.list:
+                    logger.info("price: {} - karar: {} - KapaniyorMu: {}",p.price,p.state, p.kapaniyor)
 
             time.sleep(1)
             logger.info(".\n")
         except Exception as e:
-            logger.info(e)
+            logger.info("{}",e)
             continue
         #order
         #stock.to_csv("D:\\Projeler\\Trading\\trading_py\\binance_1d.csv")

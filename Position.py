@@ -15,18 +15,18 @@ def checkOrderThread(id,position,ex, pos_list):
             t=0
             for o in orders:
                 if (o["id"] ==id):
-                    logger.info("devam eden order:",position.price,position.state)
+                    #logger.info("devam eden order:",position.price,position.state)
                     if(t==60*5):
                         #order'in suresi doldu. order'ın Pozisyon acmasi ya da kapamasi geri alinir
                         pos_list.orderIptal(id)
                     ovar=True
             if(not ovar):
-                logger.info("order tamamlandı:",position.price,position.state)
+                logger.info("order tamamlandı: {price}, {state}",price=position.price,state=position.state)
                 #order tamamlandi. pozisyon işlemi tamamlanabilir.
                 pos_list.tam_kapat(position)
                 devam=False
         except Exception as e:
-            logger.info("check order thread exception:",e)
+            logger.info("check order thread exception: {}",e)
             continue
 
 
@@ -60,7 +60,7 @@ class Position:
         self.state = karar
 
         self.id = order(self.ex, karar, miktar, price,self, pos_list)
-        logger.info("pozisyon aciliyor:", self.id, self.price, self.kapa_count,self.state)
+        logger.info("pozisyon order acildi: {id} {p} {kc} {s}", id=self.id, p=self.price, kc=self.kapa_count,s=self.state)
 
     def kapa(self,price,pos_list,karar):
         #alis ise fiyat ustu degerden satis yaparak pozisyon kapatilir.
@@ -69,16 +69,16 @@ class Position:
         if(karar=="keep" and self.kapa_count<60):
             self.kapa_count+=1
             return False,self.kar
-        if(self.state =="buy" and self.price<price ):
+        if(self.state =="buy" and (self.price+150<price) ):
             self.kar = self.karHesapla(price)
             order(self.ex,"sell",self.miktar,price,self,pos_list)
-            logger.info("pozisyon kapatiliyor:",self.id,self.price,self.state,self.kar )
+            logger.info("pozisyon kapatiliyor: {id}  - {price} - {state} ",id=self.id,price=self.price,state=self.state)
             self.kapaniyor = True
             return True,self.kar
-        elif(self.state=="sell" and self.price>price):
+        elif(self.state=="sell" and (self.price-150>price)):
             self.kar  = self.karHesapla(price)
             order(self.ex,"buy",self.miktar,price,self,pos_list)
-            logger.info("pozisyon kapatiliyor:",self.id,self.price,self.state,self.kar )
+            logger.info("pozisyon kapatiliyor: {id}  - {price} - {state} ",id=self.id,price=self.price,state=self.state)
             self.kapaniyor = True
             return True,self.kar
         else:
@@ -97,10 +97,12 @@ class PositionList:
     def pozisyonAc(self,price,miktar,karar):
         if(karar=="keep"):
             return
-        logger.info("Pozisyon aciliyor:",karar," - ",price," - ",miktar)
         p = Position(self.ex)
-        p.ac(price,miktar,karar,self)
-        #self.list.append(p)
+        plasts = [pl for pl in self.list if pl.state == karar]
+        if( len(plasts)==0 or (len(plasts)>0 and abs(plasts[-1].price-price)>200)):
+            logger.info("Pozisyon aciliyor:{karar} - {price} ", karar=karar, price=price)
+            p.ac(price,miktar,karar,self)
+            #self.list.append(p)
     def pozisyonKapat(self,price,karar):
         kapandi = False
         k=0
@@ -117,7 +119,7 @@ class PositionList:
 
         kap,kar = self.pozisyonKapat(price,karar)
         if(karar=="keep"):
-            logger.info("Karar 'keep': islem yapilmadi")
+            #logger.info("Karar 'keep': islem yapilmadi")
             return 0
         if (kap):
             return kar
@@ -127,15 +129,15 @@ class PositionList:
             return 0
 
     def tam_kapat(self,position):
-        logger.info("tamamlanan pozisyon:     "+str(position))
+        logger.info("tamamlanan pozisyon:   {state} - {price}  - Kapa:{k}",state=position.state, price=position.price, k=position.kapaniyor)
         if(position.kapaniyor==True):
             self.toplam_kar += position.kar
             self.list.remove(position)
-            logger.info("pozisyon tamamlandı. listeden cikariliyor  - list:"+ str(self.list))
+            logger.info("pozisyon tamamlandı. listeden cikariliyor")
         else:
-            logger.info("pozisyon acma tamamlandi - list:"+str(self.list))
+            logger.info("pozisyon acma tamamlandi")
             self.list.append(position)
 
     def orderIptal(self,orderid):
-        logger.info("order cancelled:"+str(orderid))
+        logger.info("order cancelled: {id}",id=str(orderid))
         self.ex.cancelOrder(orderid, 'BTC/USDT')
