@@ -62,20 +62,20 @@ class Position:
         self.id = order(self.ex, karar, miktar, price,self, pos_list)
         logger.info("pozisyon order acildi: {id} {p} {kc} {s}", id=self.id, p=self.price, kc=self.kapa_count,s=self.state)
 
-    def kapa(self,price,pos_list,karar):
+    def kapa(self,price,pos_list,karar,pozisyon_kapama_araligi):
         #alis ise fiyat ustu degerden satis yaparak pozisyon kapatilir.
         #kar =0
 
         if(karar=="keep" and self.kapa_count<60):
             self.kapa_count+=1
             return False,self.kar
-        if(self.state =="buy" and (self.price+150<price) ):
+        if(self.state =="buy" and (self.price+pozisyon_kapama_araligi<price) ):
             self.kar = self.karHesapla(price)
             order(self.ex,"sell",self.miktar,price,self,pos_list)
             logger.info("pozisyon kapatiliyor: {id}  - {price} - {state} ",id=self.id,price=self.price,state=self.state)
             self.kapaniyor = True
             return True,self.kar
-        elif(self.state=="sell" and (self.price-150>price)):
+        elif(self.state=="sell" and (self.price-pozisyon_kapama_araligi>price)):
             self.kar  = self.karHesapla(price)
             order(self.ex,"buy",self.miktar,price,self,pos_list)
             logger.info("pozisyon kapatiliyor: {id}  - {price} - {state} ",id=self.id,price=self.price,state=self.state)
@@ -94,12 +94,14 @@ class PositionList:
         self.ex=ex
         self.limit = limit
         self.toplam_kar = 0
+        self.pozisyon_acma_araligi=700
+        self.pozisyon_kapama_araligi=350
     def pozisyonAc(self,price,miktar,karar):
         if(karar=="keep"):
             return
         p = Position(self.ex)
         plasts = [pl for pl in self.list if pl.state == karar]
-        if( len(plasts)==0 or (len(plasts)>0 and abs(plasts[-1].price-price)>200)):
+        if( len(plasts)==0 or (len(plasts)>0 and abs(plasts[-1].price-price)>self.pozisyon_acma_araligi)):
             logger.info("Pozisyon aciliyor:{karar} - {price} ", karar=karar, price=price)
             p.ac(price,miktar,karar,self)
             #self.list.append(p)
@@ -108,7 +110,7 @@ class PositionList:
         k=0
         for p in self.list:
             if not(p.kapaniyor):
-                d,k = p.kapa(price,self,karar)
+                d,k = p.kapa(price,self,karar, self.pozisyon_kapama_araligi)
                 if(d):
                     kapandi = True
                     #logging.warning(msg="Pozisyon kapatılıyor:" + str(p)+"  ----   kar:"+str(k))
