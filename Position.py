@@ -95,7 +95,7 @@ class PositionList:
         self.limit = limit
         self.toplam_kar = 0
         self.pozisyon_acma_araligi=700
-        self.pozisyon_kapama_araligi=350
+        self.pozisyon_kapama_araligi=300
     def pozisyonAc(self,price,miktar,karar):
         if(karar=="keep"):
             return

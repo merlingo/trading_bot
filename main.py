@@ -214,8 +214,8 @@ def main():
     #filename = '{}.csv'.format("binance_1d")
     spot_asset = "BTC"
     coin_pair = spot_asset + '/USDT'
-    limit = 2
-    amount = 40  # $ dolar
+    limit = 4
+    amount = 60  # $ dolar
     #ex = Exchange(spot_asset, exchange, yuzde, limit=limit)
     t=0
     last_d = 0
@@ -266,11 +266,12 @@ def main():
 
 
             old_prices.append(price)
-            if (d > 0 and last_d < 0):  # sign degisimi - -dan +ye dondu. cıkacak. al.
+            avg = sum(ever_prices) / len(ever_prices)
+            if (d > 0 and last_d < 0 and price<avg):  # sign degisimi - -dan +ye dondu. cıkacak. al.
                 decision = "buy"
                 #price =price if len(old_prices)==0 else min(old_prices)
                 old_prices = []
-            elif (d < 0 and last_d > 0):  # +den -ya döndü. düşecek sat
+            elif (d < 0 and last_d > 0 and price>avg):  # +den -ya döndü. düşecek sat
                 decision = "sell"
                 #price =price if len(old_prices)==0 else max(old_prices)
                 old_prices = []
