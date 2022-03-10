@@ -283,19 +283,7 @@ def main():
 
             #ex.order(price, miktar, decision)
             #decision="buy"
-            if(len(old_prices)>10):
-                if(price == min(old_prices)):
-                    decision="buy"
-                elif(price==max(old_prices)):
-                    decision="sell"
-                elif(decision=="keep" and len(plist.list)>0 and plist.list[0].state=="sell"):
-                    price = min(old_prices)
-                    decision="buy"
-                elif(decision=="keep" and len(plist.list)>0 and  plist.list[0].state=="buy"):
-                    price = max(old_prices)
-                    decision="sell"
-                logger.info("Oldprice Birikti!  eski fiyat sayisi {} - KARAR: {} - PRICE:{}", len(old_prices),decision,price)
-                old_prices=[]
+
             #decision="buy"
             plist.evaluate(price,miktar,decision)
             logger.info("toplam kar: {}\n\n", plist.toplam_kar)
