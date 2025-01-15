@@ -21,6 +21,7 @@ def best_prices(prices):
     bsp["low"] = prices[0]
     bsp["high"]=prices[-1]
     return bsp
+
 def expect(decides,bsp,keep_price=15):
     # -(EKSİ)LER SATIŞ +(ARTI)LAR ALIŞ OLARAK DUSUNULMELİDİR. AŞAĞIDAKİNİN TAM TERSİ
     # 0 -> keep. 1 -> satim at the price 2-> satim at price*1.2 3-> asagi ralli, sat ve bekle ralli bitene kadar bekle
@@ -306,4 +307,5 @@ def main():
         #stock.to_csv("D:\\Projeler\\Trading\\trading_py\\binance_1d.csv")
 
 if __name__ == "__main__":
-    main()
+    print("main fonksiyonu çalıştırılıyor")
+    #main()
