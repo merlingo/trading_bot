@@ -1,12 +1,12 @@
 Todo:
 1. env_variable dosyasını oku +
-2. uygulamanın kod tasarımını yap
-3. katmanlara göre klasörle
-4. env_variable uygulamada kullan
-5. gui ile fonksiyonları bağla
+2. uygulamanın kod tasarımını yap +
+3. katmanlara göre klasörle +
+4. env_variable uygulamada kullan +
+5. gui ile fonksiyonları bağla +
 6. testnet hesabı oluştur
 7. testnet ile gui denemesi
-8. gui düzenleme
+8. gui düzenleme +
 9. gerçek apikey bağlantısı
 10. gerçek hesaba para atarak çalıştırma
 11. aws üstünde uygulamanın çalıştırılması

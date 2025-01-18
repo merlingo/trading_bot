@@ -91,13 +91,13 @@ class Position:
             kar = (-1) * kar
         return kar
 class PositionList:
-    def __init__(self,ex,limit):
+    def __init__(self,ex,limit, pozisyon_acma_araligi,pozisyon_kapama_araligi):
         self.list = []
         self.ex=ex
         self.limit = limit
         self.toplam_kar = 0
-        self.pozisyon_acma_araligi=700
-        self.pozisyon_kapama_araligi=300
+        self.pozisyon_acma_araligi=pozisyon_acma_araligi
+        self.pozisyon_kapama_araligi=pozisyon_kapama_araligi
     def pozisyonAc(self,price,miktar,karar):
         if(karar=="keep"):
             return
@@ -121,9 +121,9 @@ class PositionList:
                 toplam_kar += k
         return kapandi,toplam_kar
     
-    def evaluate(self,price,miktar,karar):
-
-        kap,kar = self.pozisyonKapat(price,karar) # fiyat listedeki tüm pozisyonlara gönderilir. eğer istenen boyutta kar varsa pozisyonlar kapatilir. Eger kapanan varsa kar hesaplanir.
+    def evaluate(self,amount,karar):
+        miktar = amount / float(self.price)
+        kap,kar = self.pozisyonKapat(self.price,karar) # fiyat listedeki tüm pozisyonlara gönderilir. eğer istenen boyutta kar varsa pozisyonlar kapatilir. Eger kapanan varsa kar hesaplanir.
         if(karar=="keep"):
             #logger.info("Karar 'keep': islem yapilmadi")
             return 0
@@ -131,7 +131,7 @@ class PositionList:
             return kar
         else:
             if(len(self.list)<=self.limit):
-                self.pozisyonAc(price,miktar,karar)
+                self.pozisyonAc(self.price,miktar,karar)
             return 0
 
     def tam_kapat(self,position):

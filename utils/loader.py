@@ -81,8 +81,9 @@ class Market:
             # start_date = int(datetime.datetime(2021, 1, 1, 10, 20).timestamp() * 1000)
             data = self.exchange.fetch_ohlcv(self.symbol, self.t_frame, limit=limit)
             data = [[self.exchange.iso8601(candle[0])] + candle[1:] for candle in data]
+            header = ['Timestamp', 'Open', 'High', 'Low', 'Close','volume']
 
-            df = pd.DataFrame(data, columns=values)
+            df = pd.DataFrame(data, columns=header)
             stock = Sdf.retype(df)
             # stock = stock[["rsi_14","cci_10","atr_13","high_15_sma","macd","ppo"]]
             stock.init_all()
@@ -121,3 +122,28 @@ class Market:
         bticker = self.exchange.fetch_ticker(self.symbol)
         bitcoinBTC = (float(bticker["ask"]) + float(bticker["bid"])) / 2
         return bitcoinBTC
+    
+    def get_balance(self):
+        """
+        Fetches the account balance from the exchange.
+        Returns:
+            dict: The account balance.
+        """
+        return self.exchange.fetch_balance()
+    
+    def get_USDT(self):
+        """
+        Fetches the USDT balance from the exchange.
+        Returns:
+            float: The USDT balance.
+        """
+        return ("{} (free) : {} (locked)",self.get_balance()['USDT']['free'], self.get_balance()['USDT']['locked'])
+    
+    def get_BTC(self):
+        """
+        Fetches the BTC balance from the exchange.
+        Returns:
+            float: The BTC balance.
+        """
+        return ("{} (free) : {} (locked)",self.get_balance()['BTC']['free'], self.get_balance()['BTC']['locked'])
+    
