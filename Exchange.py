@@ -138,7 +138,7 @@ class Exchange():
         self.ex.cancelOrder(orderid, self.spot_asset+'/USDT')
     
     def createOrder(self,price,miktar,t):
-        print("creating new order",price)
+        print("creating new order: ",price)
         #hangi fiyattan kac adet siparis verilecek
         order=-1
         try:

@@ -35,6 +35,7 @@ def order(ex,t,miktar,price,position,pos_list):
     thread = Thread(target=checkOrderThread, args=[order["id"],position,ex,pos_list])
     thread.start()
     return order["id"]
+
 def checkOrderIsOpen(ex):
     orders = ex.fetchOpenOrders('BTC/USDT')
     return orders
@@ -83,6 +84,7 @@ class Position:
             return True,self.kar
         else:
             return False,self.kar
+        
     def karHesapla(self,price):
         kar = price*self.miktar - self.price*self.miktar
         if self.state=="sell":
@@ -108,18 +110,20 @@ class PositionList:
     def pozisyonKapat(self,price,karar):
         kapandi = False
         k=0
+        toplam_kar = 0
         for p in self.list:
-            if not(p.kapaniyor):
+            if not(p.kapaniyor): # eger kapanmadiysa kontrol et
                 d,k = p.kapa(price,self,karar, self.pozisyon_kapama_araligi)
                 if(d):
                     kapandi = True
                     #logging.warning(msg="Pozisyon kapatılıyor:" + str(p)+"  ----   kar:"+str(k))
                     #break - break ediyoruz çünkü sadece 1 tanesini kapatsın. Ama eger kapaniyorsa hepsini kapatabilir. O fiyatla kapatabilecegi tum pozisyonlari kapatsın gitsin.
-
-        return kapandi,k
+                toplam_kar += k
+        return kapandi,toplam_kar
+    
     def evaluate(self,price,miktar,karar):
 
-        kap,kar = self.pozisyonKapat(price,karar)
+        kap,kar = self.pozisyonKapat(price,karar) # fiyat listedeki tüm pozisyonlara gönderilir. eğer istenen boyutta kar varsa pozisyonlar kapatilir. Eger kapanan varsa kar hesaplanir.
         if(karar=="keep"):
             #logger.info("Karar 'keep': islem yapilmadi")
             return 0

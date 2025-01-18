@@ -204,6 +204,7 @@ def get_price(exchange):
     return bitcoinBTC
 
 def main():
+    #deger atamalar 
     cont=True
     logger.add("/home/mert/Belgeler/Projeler/app.log", rotation="12:00")  # New file is created each day at noon
     logger.info("Trading bot başlıyor")
@@ -226,6 +227,8 @@ def main():
     ever_max_price=-1
     ever_min_price=100000000000000
     ever_prices=[]
+
+    #ana döngü
     while (cont):
         t+=1
         if(t==60*60):

@@ -35,11 +35,11 @@ def create_stock(historical_data):
     stock  = Sdf.retype(historical_data)
     return stock
 def decide_rsi(ind_vec):
-
-    if(ind_vec["rsi"]>60 ):
+    print("rsi:",ind_vec["rsi"], " price:",ind_vec["price"])
+    if(ind_vec["rsi"]>80 ):
         price = ind_vec["price"] #if (ind_vec["rsi"]>40 and ind_vec["rsi"]<50)  else ind_vec["price"]+10
         return "sell",price
-    elif(ind_vec["rsi"]<40   ):
+    elif(ind_vec["rsi"]<20   ):
         price = ind_vec["price"] #if (ind_vec["rsi"]>38 and ind_vec["rsi"]<50) else ind_vec["price"]-10
         return "buy",price
     else:
@@ -124,7 +124,7 @@ def main():
             #    decision = "sell" if len(ex.buy_prices)>0 else "buy"
             print(decision," at ",price)
 
-            ex.order(price, miktar, decision)
+            #ex.order(price, miktar, decision)
             print("toplam kar:", ex.toplam_kar)
             balances = exchange.fetchBalance()["info"]["balances"]
         except:
@@ -144,4 +144,4 @@ def main():
         #print(".\n")
 if __name__ == "__main__":
     print("main")
-    #main()
+    main()
