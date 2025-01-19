@@ -15,7 +15,7 @@ class TradingBotGUI:
         self.decider = decider
         self.assets = assets
         self.amount = amount
-
+        self.toplam_kar = 0
         # Create and place the RSI Min input
         tk.Label(root, text="RSI Min:").grid(row=0, column=0, padx=10, pady=10)
         self.rsi_min_entry = tk.Entry(root)
@@ -47,11 +47,11 @@ class TradingBotGUI:
         self.taken_decision_label.grid(row=4, column=1, padx=10, pady=10)
 
         # Create and place the USDT Miktarı label
-        self.usdt_miktari_label = tk.Label(root, text="USDT Miktarı: "+self.market.getUSDT())
+        self.usdt_miktari_label = tk.Label(root, text="USDT Miktarı: "+self.market.get_USDT())
         self.usdt_miktari_label.grid(row=5, column=0, padx=10, pady=10)
 
         # Create and place the BTC Miktarı label
-        self.btc_miktari_label = tk.Label(root, text="BTC Miktarı:"+ self.market.getBTC())
+        self.btc_miktari_label = tk.Label(root, text="BTC Miktarı:"+ self.market.get_BTC())
         self.btc_miktari_label.grid(row=5, column=1, padx=10, pady=10)
 
         # Create and place the Alinan Pozisyonlar table
@@ -137,8 +137,8 @@ class TradingBotGUI:
             print("Last RSI value:", last_rsi)
             decision = self.decider.decide(last_rsi)
 
-            
-            kar = self.plist.evaluate(self.amount, decision)
+            price = self.market.get_price()
+            kar = self.plist.evaluate(self.amount,price, decision)
             self.toplam_kar += kar
             self.toplam_kar_label.config(text="Toplam Kar: " + str(self.toplam_kar))
             print("Total profit:", self.toplam_kar)
@@ -164,3 +164,4 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = TradingBotGUI(root)
     root.mainloop()
+    

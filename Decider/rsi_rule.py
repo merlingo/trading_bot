@@ -3,10 +3,12 @@ class Rsi_Rule:
         self.min = min
         self.max = max
 
-    def check(self, data):
-        if(data>=self.max):
+    def decide(self, data):
+        print("Data: ", data)
+        print("Min: ", self.min, " - Max: ", self.max)
+        if(float(data)>=float(self.max)):
             return "sell"
-        elif(data<=self.min):
+        elif(float(data)<=float(self.min)):
             return "buy"
         else:
             return "keep"

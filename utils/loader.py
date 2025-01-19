@@ -48,7 +48,7 @@ class Market:
                 'enableRateLimit': True,
                 'verbose': False
             })
-            self.exchange.set_sandbox_mode(False)
+            self.exchange.set_sandbox_mode(True)
             exch = self.exchange_id  # initial exchange
             self.t_frame = '1m'  # 1-day timeframe, usually from 1-minute to 1-week depending on the exchange
         except AttributeError:
@@ -70,7 +70,7 @@ class Market:
             print('-' * 80)
             quit()
     
-    def get_stock_data(self, values, limit=400):
+    def get_stock_data(self, limit=400):
         """
         Fetches OHLCV data from the exchange and returns it as a DataFrame.
         Parameters: values (list) - The values to be fetched from the exchange.
@@ -95,15 +95,15 @@ class Market:
             quit()
         return stock
 
-    def last(self, values):
+    def last(self):
         """
         Get the latest OHLCV data from the exchange.
         Parameters: values (list) - The values to be fetched from the exchange.
         Returns: data (DataFrame) - The latest OHLCV data from the exchange.
         """
         self.exchange.load_markets(True)
-        #values = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
-        data =  self.get_stock_data(values, limit=25)# exchange.fetch_ohlcv(coin, t_frame, limit=25)
+        values = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
+        data =  self.get_stock_data( limit=25)# exchange.fetch_ohlcv(coin, t_frame, limit=25)
         data.fillna(0)
         data = data.iloc[:, ~data.columns.isin(values)]
         data.replace({-np.inf: -1_000_000, np.inf: 1_000_000}, inplace=True)
@@ -137,7 +137,9 @@ class Market:
         Returns:
             float: The USDT balance.
         """
-        return ("{} (free) : {} (locked)",self.get_balance()['USDT']['free'], self.get_balance()['USDT']['locked'])
+        all_balances = self.get_balance()
+        all_balances
+        return str(self.get_balance()['free']['USDT'])+" (free) : "+str(self.get_balance()['used']['USDT'])+" (locked)"
     
     def get_BTC(self):
         """
@@ -145,5 +147,6 @@ class Market:
         Returns:
             float: The BTC balance.
         """
-        return ("{} (free) : {} (locked)",self.get_balance()['BTC']['free'], self.get_balance()['BTC']['locked'])
+        return str(self.get_balance()['free']['BTC'])+" (free) : "+str(self.get_balance()['used']['BTC'])+" (locked)"
+ 
     

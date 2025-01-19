@@ -70,13 +70,13 @@ class Position:
         if(karar=="keep" and self.kapa_count<60):
             self.kapa_count+=1
             return False,self.kar
-        if(self.state =="buy" and (self.price+pozisyon_kapama_araligi<price) ):
+        if(self.state =="buy" and (self.price+float(pozisyon_kapama_araligi)<price) ):
             self.kar = self.karHesapla(price)
             order(self.ex,"sell",self.miktar,price,self,pos_list)
             logger.info("pozisyon kapatiliyor: {id}  - {price} - {state} ",id=self.id,price=self.price,state=self.state)
             self.kapaniyor = True
             return True,self.kar
-        elif(self.state=="sell" and (self.price-pozisyon_kapama_araligi>price)):
+        elif(self.state=="sell" and (self.price-float(pozisyon_kapama_araligi)>price)):
             self.kar  = self.karHesapla(price)
             order(self.ex,"buy",self.miktar,price,self,pos_list)
             logger.info("pozisyon kapatiliyor: {id}  - {price} - {state} ",id=self.id,price=self.price,state=self.state)
@@ -96,8 +96,8 @@ class PositionList:
         self.ex=ex
         self.limit = limit
         self.toplam_kar = 0
-        self.pozisyon_acma_araligi=pozisyon_acma_araligi
-        self.pozisyon_kapama_araligi=pozisyon_kapama_araligi
+        self.pozisyon_acma_araligi=float(pozisyon_acma_araligi)
+        self.pozisyon_kapama_araligi=float(pozisyon_kapama_araligi)
     def pozisyonAc(self,price,miktar,karar):
         if(karar=="keep"):
             return
@@ -121,17 +121,18 @@ class PositionList:
                 toplam_kar += k
         return kapandi,toplam_kar
     
-    def evaluate(self,amount,karar):
-        miktar = amount / float(self.price)
-        kap,kar = self.pozisyonKapat(self.price,karar) # fiyat listedeki tüm pozisyonlara gönderilir. eğer istenen boyutta kar varsa pozisyonlar kapatilir. Eger kapanan varsa kar hesaplanir.
+    def evaluate(self,amount,price,karar):
+        miktar = float(amount) / float(price)
+        print("miktar:",miktar)
+        kap,kar = self.pozisyonKapat(price,karar) # fiyat listedeki tüm pozisyonlara gönderilir. eğer istenen boyutta kar varsa pozisyonlar kapatilir. Eger kapanan varsa kar hesaplanir.
         if(karar=="keep"):
             #logger.info("Karar 'keep': islem yapilmadi")
             return 0
         if (kap):
             return kar
         else:
-            if(len(self.list)<=self.limit):
-                self.pozisyonAc(self.price,miktar,karar)
+            if(len(self.list)<=int(self.limit)):
+                self.pozisyonAc(price,miktar,karar)
             return 0
 
     def tam_kapat(self,position):
