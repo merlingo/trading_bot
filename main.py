@@ -14,11 +14,13 @@ def main():
     env_file_path = '.env_variable_file'
     env_vars = read_env_file(env_file_path)
 
-    print(env_vars)
+    #print(env_vars)
     #initialize Market Decider PositionList Logger  and Gui
     exchange_id = 'binance'
     symbol = env_vars['SPOT_ASSET']+"/USDT"
     market = Market(exchange_id, env_vars['APIKEY'], env_vars['SECRET_KEY'], symbol)
+    #print(market.get_rsi(100))
+    #return
     plist = PositionList(market.exchange,env_vars['LIMIT'], env_vars['POZISYON_ACMA_ARALIGI'], env_vars['POZISYON_KAPAMA_ARALIGI'])
     logger.add(env_vars['PWD']+"/logs/logs", rotation="12:00")  # New file is created each day at noon
     logger.info("Trading bot başlıyor")

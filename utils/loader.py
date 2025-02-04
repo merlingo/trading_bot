@@ -1,4 +1,5 @@
 import ccxt
+import pandas_ta as ta
 import pandas as pd
 from stockstats import StockDataFrame as Sdf
 import numpy as np
@@ -70,7 +71,7 @@ class Market:
             print('-' * 80)
             quit()
     
-    def get_stock_data(self, limit=400):
+    def get_stock_data(self, limit=200):
         """
         Fetches OHLCV data from the exchange and returns it as a DataFrame.
         Parameters: values (list) - The values to be fetched from the exchange.
@@ -94,7 +95,28 @@ class Market:
             print('-' * 80)
             quit()
         return stock
-
+    def get_rsi(self,rsi_length = 10):
+        """
+        Fetches the RSI value from the exchange.
+        Returns:
+            float: The RSI value.
+        """
+        #stock = self.get_stock_data()
+        limit = 200
+        rsi_name = "RSI_"+str(rsi_length)
+        try:
+            data = self.exchange.fetch_ohlcv(self.symbol, self.t_frame, limit=limit)
+            #print('--------------------------------------------------------------')
+            if len(data):
+                df = pd.DataFrame(data, columns=['time', 'open', 'high', 'low', 'close', 'volume'])
+                df['time'] = pd.to_datetime(df['time'], unit='ms')
+                df = pd.concat([df, df.ta.rsi(length=rsi_length)], axis=1)
+                #print(df[-20:])
+                #print(self.exchange.iso8601 (self.exchange.milliseconds()))
+        except Exception as e:
+            print(type(e).__name__, str(e))
+        return df[rsi_name].iloc[-1]
+    
     def last(self):
         """
         Get the latest OHLCV data from the exchange.
@@ -103,7 +125,7 @@ class Market:
         """
         self.exchange.load_markets(True)
         values = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
-        data =  self.get_stock_data( limit=25)# exchange.fetch_ohlcv(coin, t_frame, limit=25)
+        data =  self.get_stock_data( limit=200)# exchange.fetch_ohlcv(coin, t_frame, limit=25)
         data.fillna(0)
         data = data.iloc[:, ~data.columns.isin(values)]
         data.replace({-np.inf: -1_000_000, np.inf: 1_000_000}, inplace=True)

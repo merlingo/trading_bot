@@ -16,6 +16,7 @@ class TradingBotGUI:
         self.assets = assets
         self.amount = amount
         self.toplam_kar = 0
+        
         # Create and place the RSI Min input
         tk.Label(root, text="RSI Min:").grid(row=0, column=0, padx=10, pady=10)
         self.rsi_min_entry = tk.Entry(root)
@@ -42,40 +43,47 @@ class TradingBotGUI:
         self.toplam_kar_label = tk.Label(root, text="Toplam Kar:")
         self.toplam_kar_label.grid(row=4, column=0, padx=10, pady=10)
 
+        # Create and place the Last Price label
+        self.last_price = tk.Label(root, text="Last Price: "+str(self.market.get_price()))
+        self.last_price.grid(row=4, column=1, padx=10, pady=10)
         # Create and place the Taken Decision label
-        self.taken_decision_label = tk.Label(root, text="Taken Decision:")
-        self.taken_decision_label.grid(row=4, column=1, padx=10, pady=10)
+        self.last_rsi = tk.Label(root, text="Last RSI(50): "+str(market.get_rsi(50)))
+        self.last_rsi.grid(row=5, column=0, padx=10, pady=10)
+
+        # Create and place the Taken Decision label
+        self.last_rsi_14 = tk.Label(root, text="Last RSI(100): "+str(market.get_rsi(14)))
+        self.last_rsi_14.grid(row=5, column=1, padx=10, pady=10)
 
         # Create and place the USDT Miktarı label
         self.usdt_miktari_label = tk.Label(root, text="USDT Miktarı: "+self.market.get_USDT())
-        self.usdt_miktari_label.grid(row=5, column=0, padx=10, pady=10)
+        self.usdt_miktari_label.grid(row=6, column=0, padx=10, pady=10)
 
         # Create and place the BTC Miktarı label
         self.btc_miktari_label = tk.Label(root, text="BTC Miktarı:"+ self.market.get_BTC())
-        self.btc_miktari_label.grid(row=5, column=1, padx=10, pady=10)
+        self.btc_miktari_label.grid(row=6, column=1, padx=10, pady=10)
 
         # Create and place the Alinan Pozisyonlar table
-        tk.Label(root, text="Alınan Pozisyonlar:").grid(row=6, column=0, padx=10, pady=10, columnspan=2)
+        tk.Label(root, text="Alınan Pozisyonlar:").grid(row=7, column=0, padx=10, pady=10, columnspan=2)
         self.positions_table = ttk.Treeview(root, columns=("Position", "Amount", "Price"), show='headings')
         self.positions_table.heading("Position", text="Position")
         self.positions_table.heading("Amount", text="Amount")
         self.positions_table.heading("Price", text="Price")
-        self.positions_table.grid(row=7, column=0, columnspan=2, padx=10, pady=10)
+        self.positions_table.grid(row=8, column=0, columnspan=2, padx=10, pady=10)
 
         # Create and place the Start button
         self.start_button = tk.Button(root, text="Start", command=self.start)
-        self.start_button.grid(row=8, column=0, padx=10, pady=10)
+        self.start_button.grid(row=9, column=0, padx=10, pady=10)
 
         # Create and place the Stop button
         self.stop_button = tk.Button(root, text="Stop", command=self.stop)
-        self.stop_button.grid(row=8, column=1, padx=10, pady=10)
+        self.stop_button.grid(row=9, column=1, padx=10, pady=10)
 
         # Create and place the notification label with a red dot
         self.notification_label = tk.Label(root, text="Stopped")
-        self.notification_label.grid(row=9, column=0, padx=10, pady=10)
+        self.notification_label.grid(row=10, column=0, padx=10, pady=10)
         self.notification_dot = tk.Canvas(root, width=20, height=20)
         self.red_dot = self.notification_dot.create_oval(5, 5, 15, 15, fill="red")
-        self.notification_dot.grid(row=9, column=1, padx=10, pady=10)
+        self.notification_dot.grid(row=10, column=1, padx=10, pady=10)
 
     def start(self):
         rsi_min = self.rsi_min_entry.get()
@@ -96,7 +104,7 @@ class TradingBotGUI:
 
         # Update labels and notification
         self.toplam_kar_label.config(text="Toplam Kar: 0")
-        self.taken_decision_label.config(text="Taken Decision: None")
+        self.last_price.config(text="Last Price: "+str(self.market.get_price()))
         #self.usdt_miktari_label.config(text="USDT Miktarı: 1000")
         #self.btc_miktari_label.config(text="BTC Miktarı: 0.05")
         self.notification_label.config(text="Running")
@@ -110,14 +118,14 @@ class TradingBotGUI:
     def stop(self):
         # Stop the infinite loop
         self.running = False
-        self.collect_data_thread.join()
+        self.collect_data_thread.join(timeout=1)
 
         # For demonstration purposes, just print a message
         print("Trading stopped.")
         
         # Update labels and notification
         self.toplam_kar_label.config(text="Toplam Kar: --")
-        self.taken_decision_label.config(text="Taken Decision: --")
+        #self.taken_decision_label.config(text="Taken Decision: --")
         self.usdt_miktari_label.config(text="USDT Miktarı: --")
         self.btc_miktari_label.config(text="BTC Miktarı: --")
         self.notification_label.config(text="Stopped")
@@ -129,24 +137,40 @@ class TradingBotGUI:
             print("Collecting data from exchange market...")
             self.market.load_data()
             stock = self.market.get_stock_data()
+            print(type(stock))
+            print(stock.columns.tolist())
 
             self.plist.ex = self.market.exchange
             
-            # Get the latest RSI value
-            last_rsi = stock['rsi_14'].iloc[-1]
-            print("Last RSI value:", last_rsi)
-            decision = self.decider.decide(last_rsi)
+            # Get the latest RSI_14 value
+            #last_rsi_14 = stock['rsi_14'].iloc[-1]
+            #print("Last RSI_14 value:", last_rsi_14)
+            self.last_rsi_14.config(text="Last RSI(50): "+str(self.market.get_rsi(50)))
+            decision = self.decider.decide(self.market.get_rsi(50))
 
-            price = self.market.get_price()
-            kar = self.plist.evaluate(self.amount,price, decision)
-            self.toplam_kar += kar
-            self.toplam_kar_label.config(text="Toplam Kar: " + str(self.toplam_kar))
-            print("Total profit:", self.toplam_kar)
-            print("Position list:", self.plist.list)
-            time.sleep(1)  # Simulate delay
-            self.delete_all_rows()
-            for position in self.plist.list:
-                self.pozisyonAc(position.state, position.miktar, position.price)
+            # Get the latest RSI value
+            #last_rsi = stock['stochrsi'].iloc[-1]
+            #print("Last RSI value:", last_rsi)
+            self.last_rsi.config(text="Last RSI(100): "+str(self.market.get_rsi(100)))
+            try:
+                price = self.market.get_price()
+                kar = self.plist.evaluate(self.amount,price, decision)
+                self.toplam_kar += kar
+
+                self.toplam_kar_label.config(text="Toplam Kar: " + str(self.toplam_kar))
+                self.last_price.config(text="Last Price: "+str(price))
+                print("Total profit:", self.toplam_kar)
+                print("Position list:", self.plist.list)
+                self.usdt_miktari_label.config(text="USDT Miktarı: "+self.market.get_USDT())
+                self.btc_miktari_label.config(text="BTC Miktarı: "+self.market.get_BTC())
+                #time.sleep(1)  # Simulate delay
+                self.delete_all_rows()
+                for position in self.plist.list:
+                    self.pozisyonAc(position.state, position.miktar, position.price)
+            except Exception as e:
+                print(e)
+                print("Error in collect_data")
+                pass
 
     def pozisyonAc(self, position, amount, price):
         self.positions_table.insert("", "end", values=(position, amount, price))

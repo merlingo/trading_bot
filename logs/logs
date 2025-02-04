@@ -1,41 +1,52 @@
-2025-01-19 17:21:42.897 | INFO     | __main__:main:24 - Trading bot başlıyor
-2025-01-19 17:23:05.961 | INFO     | __main__:main:24 - Trading bot başlıyor
-2025-01-19 17:24:02.456 | INFO     | __main__:main:24 - Trading bot başlıyor
-2025-01-19 17:25:00.735 | INFO     | __main__:main:24 - Trading bot başlıyor
-2025-01-19 17:25:42.865 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:sell - 105181.08499999999 
-2025-01-19 17:25:43.145 | INFO     | Position:ac:64 - pozisyon order acildi: 2808451 105181.08499999999 0 sell
-2025-01-19 17:25:49.671 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:sell - 105168.225 
-2025-01-19 17:25:49.685 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 105181.08499999999, sell
-2025-01-19 17:25:49.685 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   sell - 105181.08499999999  - Kapa:False
-2025-01-19 17:25:49.686 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
-2025-01-19 17:25:49.939 | INFO     | Position:ac:64 - pozisyon order acildi: 2808475 105168.225 0 sell
-2025-01-19 17:26:03.069 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 105168.225, sell
-2025-01-19 17:26:03.070 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   sell - 105168.225  - Kapa:False
-2025-01-19 17:26:03.070 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
-2025-01-19 17:27:21.023 | INFO     | __main__:main:24 - Trading bot başlıyor
-2025-01-19 17:27:49.958 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:sell - 105537.245 
-2025-01-19 17:27:50.229 | INFO     | Position:ac:64 - pozisyon order acildi: 2808804 105537.245 0 sell
-2025-01-19 17:27:54.037 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 105537.245, sell
-2025-01-19 17:27:54.038 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   sell - 105537.245  - Kapa:False
-2025-01-19 17:27:54.038 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
-2025-01-19 17:28:23.936 | INFO     | __main__:main:24 - Trading bot başlıyor
-2025-01-19 17:28:49.189 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:sell - 105679.935 
-2025-01-19 17:28:49.947 | INFO     | Position:ac:64 - pozisyon order acildi: 2808971 105679.935 0 sell
-2025-01-19 17:28:53.715 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 105679.935, sell
-2025-01-19 17:28:53.715 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   sell - 105679.935  - Kapa:False
-2025-01-19 17:28:53.715 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
-2025-01-19 17:30:14.872 | INFO     | Position:kapa:82 - pozisyon kapatiliyor: 2808971  - 105679.935 - sell 
-2025-01-19 17:30:28.479 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 105679.935, sell
-2025-01-19 17:30:28.479 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   sell - 105679.935  - Kapa:True
-2025-01-19 17:30:28.480 | INFO     | Position:tam_kapat:143 - pozisyon tamamlandı. listeden cikariliyor
-2025-01-19 17:30:30.334 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:buy - 64477.05 
-2025-01-19 17:30:31.090 | INFO     | Position:ac:64 - pozisyon order acildi: 2809131 64477.05 0 buy
-2025-01-19 17:30:37.701 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:buy - 104364.095 
-2025-01-19 17:30:37.970 | INFO     | Position:ac:64 - pozisyon order acildi: 2809137 104364.095 0 buy
-2025-01-19 17:30:41.247 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 104364.095, buy
-2025-01-19 17:30:41.247 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   buy - 104364.095  - Kapa:False
-2025-01-19 17:30:41.248 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
-2025-01-19 18:38:39.118 | INFO     | Position:checkOrderThread:29 - check order thread exception: binance GET https://testnet.binance.vision/api/v3/openOrders?timestamp=1737297208251&symbol=BTCUSDT&recvWindow=10000&signature=0f5839266283fe06a02d66b90bc91a5b4a78cd2c9cbeaad91a60b7aa212eee9c
-2025-01-19 18:38:42.986 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 64477.05, buy
-2025-01-19 18:38:42.987 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   buy - 64477.05  - Kapa:False
-2025-01-19 18:38:42.987 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
+2025-02-03 15:30:01.123 | INFO     | __main__:main:26 - Trading bot başlıyor
+2025-02-03 15:52:38.213 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:buy - 95073.975 
+2025-02-03 15:52:38.493 | INFO     | Position:ac:64 - pozisyon order acildi: 8237328 95073.975 0 buy
+2025-02-03 15:52:45.525 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 95073.975, buy
+2025-02-03 15:52:45.526 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   buy - 95073.975  - Kapa:False
+2025-02-03 15:52:45.526 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
+2025-02-03 17:40:21.344 | INFO     | Position:kapa:76 - pozisyon kapatiliyor: 8237328  - 95073.975 - buy 
+2025-02-03 17:40:25.111 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 95073.975, buy
+2025-02-03 17:40:25.113 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   buy - 95073.975  - Kapa:True
+2025-02-03 17:40:25.113 | INFO     | Position:tam_kapat:143 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-03 17:54:35.188 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:buy - 73016.95 
+2025-02-03 17:54:35.464 | INFO     | Position:ac:64 - pozisyon order acildi: 8267949 73016.95 0 buy
+2025-02-03 17:54:44.056 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:buy - 95664.385 
+2025-02-03 17:54:44.329 | INFO     | Position:ac:64 - pozisyon order acildi: 8267982 95664.385 0 buy
+2025-02-03 17:54:47.601 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 95664.385, buy
+2025-02-03 17:54:47.601 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   buy - 95664.385  - Kapa:False
+2025-02-03 17:54:47.601 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
+2025-02-03 17:54:49.061 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 73016.95, buy
+2025-02-03 17:54:49.061 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   buy - 73016.95  - Kapa:False
+2025-02-03 17:54:49.063 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
+2025-02-03 17:55:12.664 | INFO     | Position:kapa:76 - pozisyon kapatiliyor: 8267949  - 73016.95 - buy 
+2025-02-03 17:55:31.086 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:buy - 95723.975 
+2025-02-03 17:55:31.368 | INFO     | Position:ac:64 - pozisyon order acildi: 8268360 95723.975 0 buy
+2025-02-03 17:55:42.502 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 95723.975, buy
+2025-02-03 17:55:42.502 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   buy - 95723.975  - Kapa:False
+2025-02-03 17:55:42.503 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
+2025-02-03 17:56:13.196 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 73016.95, buy
+2025-02-03 17:56:13.207 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   buy - 73016.95  - Kapa:True
+2025-02-03 17:56:13.207 | INFO     | Position:tam_kapat:143 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-03 17:59:44.647 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:buy - 93779.89 
+2025-02-03 17:59:44.918 | INFO     | Position:ac:64 - pozisyon order acildi: 8269937 93779.89 0 buy
+2025-02-03 17:59:58.509 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 93779.89, buy
+2025-02-03 17:59:58.510 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   buy - 93779.89  - Kapa:False
+2025-02-03 17:59:58.511 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
+2025-02-03 18:06:30.953 | INFO     | Position:kapa:76 - pozisyon kapatiliyor: 8267982  - 95664.385 - buy 
+2025-02-03 18:06:37.990 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 95664.385, buy
+2025-02-03 18:06:37.990 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   buy - 95664.385  - Kapa:True
+2025-02-03 18:06:37.990 | INFO     | Position:tam_kapat:143 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-03 18:06:51.699 | INFO     | Position:kapa:76 - pozisyon kapatiliyor: 8268360  - 95723.975 - buy 
+2025-02-03 18:07:01.620 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 95723.975, buy
+2025-02-03 18:07:01.620 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   buy - 95723.975  - Kapa:True
+2025-02-03 18:07:01.620 | INFO     | Position:tam_kapat:143 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-03 23:08:35.084 | INFO     | __main__:main:26 - Trading bot başlıyor
+2025-02-03 23:09:17.492 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:sell - 101742.20999999999 
+2025-02-03 23:09:17.766 | INFO     | Position:ac:64 - pozisyon order acildi: 8352303 101742.20999999999 0 sell
+2025-02-03 23:09:24.808 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 101742.20999999999, sell
+2025-02-03 23:09:24.808 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   sell - 101742.20999999999  - Kapa:False
+2025-02-03 23:09:24.809 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
+2025-02-03 23:55:01.035 | INFO     | Position:kapa:82 - pozisyon kapatiliyor: 8352303  - 101742.20999999999 - sell 
+2025-02-04 00:02:05.798 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 101742.20999999999, sell
+2025-02-04 00:02:05.799 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   sell - 101742.20999999999  - Kapa:True
+2025-02-04 00:02:05.799 | INFO     | Position:tam_kapat:143 - pozisyon tamamlandı. listeden cikariliyor

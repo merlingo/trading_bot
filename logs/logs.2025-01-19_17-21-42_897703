@@ -1,0 +1,41 @@
+2025-01-19 17:21:42.897 | INFO     | __main__:main:24 - Trading bot başlıyor
+2025-01-19 17:23:05.961 | INFO     | __main__:main:24 - Trading bot başlıyor
+2025-01-19 17:24:02.456 | INFO     | __main__:main:24 - Trading bot başlıyor
+2025-01-19 17:25:00.735 | INFO     | __main__:main:24 - Trading bot başlıyor
+2025-01-19 17:25:42.865 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:sell - 105181.08499999999 
+2025-01-19 17:25:43.145 | INFO     | Position:ac:64 - pozisyon order acildi: 2808451 105181.08499999999 0 sell
+2025-01-19 17:25:49.671 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:sell - 105168.225 
+2025-01-19 17:25:49.685 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 105181.08499999999, sell
+2025-01-19 17:25:49.685 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   sell - 105181.08499999999  - Kapa:False
+2025-01-19 17:25:49.686 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
+2025-01-19 17:25:49.939 | INFO     | Position:ac:64 - pozisyon order acildi: 2808475 105168.225 0 sell
+2025-01-19 17:26:03.069 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 105168.225, sell
+2025-01-19 17:26:03.070 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   sell - 105168.225  - Kapa:False
+2025-01-19 17:26:03.070 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
+2025-01-19 17:27:21.023 | INFO     | __main__:main:24 - Trading bot başlıyor
+2025-01-19 17:27:49.958 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:sell - 105537.245 
+2025-01-19 17:27:50.229 | INFO     | Position:ac:64 - pozisyon order acildi: 2808804 105537.245 0 sell
+2025-01-19 17:27:54.037 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 105537.245, sell
+2025-01-19 17:27:54.038 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   sell - 105537.245  - Kapa:False
+2025-01-19 17:27:54.038 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
+2025-01-19 17:28:23.936 | INFO     | __main__:main:24 - Trading bot başlıyor
+2025-01-19 17:28:49.189 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:sell - 105679.935 
+2025-01-19 17:28:49.947 | INFO     | Position:ac:64 - pozisyon order acildi: 2808971 105679.935 0 sell
+2025-01-19 17:28:53.715 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 105679.935, sell
+2025-01-19 17:28:53.715 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   sell - 105679.935  - Kapa:False
+2025-01-19 17:28:53.715 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
+2025-01-19 17:30:14.872 | INFO     | Position:kapa:82 - pozisyon kapatiliyor: 2808971  - 105679.935 - sell 
+2025-01-19 17:30:28.479 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 105679.935, sell
+2025-01-19 17:30:28.479 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   sell - 105679.935  - Kapa:True
+2025-01-19 17:30:28.480 | INFO     | Position:tam_kapat:143 - pozisyon tamamlandı. listeden cikariliyor
+2025-01-19 17:30:30.334 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:buy - 64477.05 
+2025-01-19 17:30:31.090 | INFO     | Position:ac:64 - pozisyon order acildi: 2809131 64477.05 0 buy
+2025-01-19 17:30:37.701 | INFO     | Position:pozisyonAc:107 - Pozisyon aciliyor:buy - 104364.095 
+2025-01-19 17:30:37.970 | INFO     | Position:ac:64 - pozisyon order acildi: 2809137 104364.095 0 buy
+2025-01-19 17:30:41.247 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 104364.095, buy
+2025-01-19 17:30:41.247 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   buy - 104364.095  - Kapa:False
+2025-01-19 17:30:41.248 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
+2025-01-19 18:38:39.118 | INFO     | Position:checkOrderThread:29 - check order thread exception: binance GET https://testnet.binance.vision/api/v3/openOrders?timestamp=1737297208251&symbol=BTCUSDT&recvWindow=10000&signature=0f5839266283fe06a02d66b90bc91a5b4a78cd2c9cbeaad91a60b7aa212eee9c
+2025-01-19 18:38:42.986 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 64477.05, buy
+2025-01-19 18:38:42.987 | INFO     | Position:tam_kapat:139 - tamamlanan pozisyon:   buy - 64477.05  - Kapa:False
+2025-01-19 18:38:42.987 | INFO     | Position:tam_kapat:145 - pozisyon acma tamamlandi
