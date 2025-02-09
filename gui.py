@@ -14,7 +14,7 @@ class TradingBotGUI:
         self.plist = plist
         self.decider = decider
         self.assets = assets
-        self.amount = amount
+        self.amount = 0
         self.toplam_kar = 0
         
         # Create and place the RSI Min input
@@ -88,7 +88,7 @@ class TradingBotGUI:
     def start(self):
         rsi_min = self.rsi_min_entry.get()
         rsi_max = self.rsi_max_entry.get()
-        islem_miktari = self.islem_miktari_entry.get()
+        self.amount = self.islem_miktari_entry.get()
         islem_turu = self.islem_turu_var.get()
         
         # For demonstration purposes, just print the values

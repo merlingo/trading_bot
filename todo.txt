@@ -1,33 +1,15 @@
 Todo:
-1. env_variable dosyasını oku +
-2. uygulamanın kod tasarımını yap +
-3. katmanlara göre klasörle +
-4. env_variable uygulamada kullan +
-5. gui ile fonksiyonları bağla +
-6. testnet hesabı oluştur
-7. testnet ile gui denemesi
-8. gui düzenleme +
-9. gerçek apikey bağlantısı
-10. gerçek hesaba para atarak çalıştırma
-11. aws üstünde uygulamanın çalıştırılması
+- PositionList değerlerinin db'ye eklenmesi ve silinmesi
+- Program başlayınca db'den alinan veriler ile PositionList objesi construct edilmesi
+- Son 10 RSI degerinin listelenmesi
+- Son 10 BTC/USDT degerinin listelenmesi
+- Tabloya yeni columnlar eklenmesi:
+    - Kaç paradan aldığı
+    - aldığı andaki RSI değeri
+- Start'a basınca gerekli değerler var mı kontrol yoksa uyarı verilmesi
+- Start ve Stop'da girdilerin enable/disable edilmesi
 
 
-Analiz - main.py: 
-Amaç: Küçük değişimleri yapay zeka ve karar mekanizması ile yakalayıp kısa sürelerde küçük karlar elde etmek amaçlanmıştır
-
-Kod bölümleri - main():
-- değer atamaları
-- rf modelinin oluşturulması
-- PositionList objesinin oluşturulması: pozisyon açma ve kapama işlemlerinden sorumludur.
-- ana döngü
-    - modelin belirlenmiş bir zaman aralığında yenilenmesi
-    - degerler listesi ayarları:
-        - listede 50 fiyat olduğunda eskilerin silinmesi
-        - listede 20 fiyattan fazla olduğunda en yüksek ve en düşük fiyatın bulunması:
-            eger en yüksek ya da en dusuk fiyat bulunursa, bu deger PositionList değerlendirmesine gönderilir.
-    - x -> last(): son degerlerin alınması - ['Timestamp', 'Open', 'High', 'Low', 'Close', 'volume']
-    - d -> son deger ile ilgili random forest kararı
-    - alis satis kararının verilmesi: eger sign degisimi olduysa, yani fiyat yukarı trendi bitirip aşağı trende başladıysa veya tam tersi durumda pozisyon açılır
-    -PositionList degerlendirmesi: inputs: price,miktar,decision | outputs: kar (kullanılmamış)
-    - loglamalar yapılır
-
+- gerçek apikey bağlantısı 
+- gerçek hesaba para atarak çalıştırma
+- aws üstünde uygulamanın çalıştırılması
