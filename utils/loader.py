@@ -37,6 +37,8 @@ class Market:
         self.api_key = api_key
         self.secret = secret
         self.symbol = symbol
+        self.t_frame = '15m'  # 1-day timeframe, usually from 1-minute to 1-week depending on the exchange
+
         self.load_data()
 
     def load_data(self):
@@ -45,13 +47,12 @@ class Market:
             self.exchange = exchange_class({
                 'apiKey': self.api_key,
                 'secret': self.secret,
-                'timeout': 30000,
+                'timeout': 3000000,
                 'enableRateLimit': True,
                 'verbose': False
             })
             self.exchange.set_sandbox_mode(True)
             exch = self.exchange_id  # initial exchange
-            self.t_frame = '1m'  # 1-day timeframe, usually from 1-minute to 1-week depending on the exchange
         except AttributeError:
             print('-' * 36, ' ERROR ', '-' * 35)
             print('Exchange "{}" not found. Please check the exchange is supported.'.format(exch))
@@ -95,6 +96,28 @@ class Market:
             print('-' * 80)
             quit()
         return stock
+    
+    def get_rsi_values(self,rsi_length = 10):
+        """
+        Fetches the RSI values from the exchange.
+        Returns:
+            list: The RSI values.
+        """
+        limit = 200
+        rsi_name = "RSI_"+str(rsi_length)
+        try:
+            data = self.exchange.fetch_ohlcv(self.symbol, self.t_frame, limit=limit)
+            #print('--------------------------------------------------------------')
+            if len(data):
+                df = pd.DataFrame(data, columns=['time', 'open', 'high', 'low', 'close', 'volume'])
+                df['time'] = pd.to_datetime(df['time'], unit='ms')
+                df = pd.concat([df, df.ta.rsi(length=rsi_length)], axis=1)
+                #print(df[-20:])
+                #print(self.exchange.iso8601 (self.exchange.milliseconds()))
+        except Exception as e:
+            print(type(e).__name__, str(e))
+        return df[rsi_name].tail(rsi_length).tolist()
+    
     def get_rsi(self,rsi_length = 10):
         """
         Fetches the RSI value from the exchange.
@@ -102,6 +125,8 @@ class Market:
             float: The RSI value.
         """
         #stock = self.get_stock_data()
+        #OLD CODE
+        """
         limit = 200
         rsi_name = "RSI_"+str(rsi_length)
         try:
@@ -116,6 +141,9 @@ class Market:
         except Exception as e:
             print(type(e).__name__, str(e))
         return df[rsi_name].iloc[-1]
+    """
+        #NEW CODE
+        return self.get_rsi_values()[-1]
     
     def last(self):
         """
@@ -144,6 +172,11 @@ class Market:
         bticker = self.exchange.fetch_ticker(self.symbol)
         bitcoinBTC = (float(bticker["ask"]) + float(bticker["bid"])) / 2
         return bitcoinBTC
+    
+    def get_last10_prices(self):
+        ohlcv = self.exchange.fetch_ohlcv('BTC/USDT', timeframe='1m', limit=10)
+        return [(pd.to_datetime(candle[0], unit='ms'), candle[1], candle[2], candle[3], candle[4]) for candle in ohlcv]
+
     
     def get_balance(self):
         """

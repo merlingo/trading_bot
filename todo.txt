@@ -1,13 +1,17 @@
 Todo:
-- PositionList değerlerinin db'ye eklenmesi ve silinmesi
-- Program başlayınca db'den alinan veriler ile PositionList objesi construct edilmesi
-- Son 10 RSI degerinin listelenmesi
-- Son 10 BTC/USDT degerinin listelenmesi
+- PositionList değerlerinin db'ye eklenmesi ve silinmesi +
+- Program başlayınca db'den alinan veriler ile PositionList objesi construct edilmesi +
+- Son 10 RSI degerinin listelenmesi +
+- Son 10 BTC/USDT degerinin listelenmesi +
 - Tabloya yeni columnlar eklenmesi:
-    - Kaç paradan aldığı
-    - aldığı andaki RSI değeri
-- Start'a basınca gerekli değerler var mı kontrol yoksa uyarı verilmesi
+    - Kaç paradan aldığı +
+    - aldığı andaki RSI değeri - (rsi degeri position objesinde tutulmuyor.)
+- Start'a basınca gerekli değerler var mı kontrol yoksa uyarı verilmesi +
 - Start ve Stop'da girdilerin enable/disable edilmesi
+- Dışarıdan pozisyon ekleme isteği: yeni ekran açılır ve pozisyon değerleri girilir. Emir oluşturulur. Eğer pozisyon alınırsa listeye eklenir.
+- Pozisyon talepleri tablosu: pozisyon açılmadan ve listeye eklenmeden önce alış ve satış emirlerinin tablosu
+- Pozisyon kapama butonu: butona basılınca ekran açılır. Pozisyon kapanması için değerler girilir. Pozisyon kapanması için emir verilir. Emir gerçekleşirse pozisyon kapanır.
+
 
 
 - gerçek apikey bağlantısı 

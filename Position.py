@@ -42,11 +42,11 @@ def checkOrderIsOpen(ex):
 
 class Position:
     def __init__(self,ex):
-        self.state = "baslangic"
-        self.price = 0
-        self.miktar=0
-        self.id=""
-        self.ex =ex
+        self.state  = "baslangic"
+        self.price  = 0
+        self.miktar = 0
+        self.id     = ""
+        self.ex     = ex
         self.kapaniyor = False
         self.kapa_count=0 # belirli sayida keep'de kapama sayisi artar. Eger bir seviyenin ustune cikarsa keep olmasina bakilmadan kar var mi aranir.
         self.kar =0
@@ -54,50 +54,62 @@ class Position:
     def __str__(self):
         return "id:"+str(self.id)+", "+self.state+", "+str(self.price)+", Kapaniyor:"+str(self.kapaniyor)+"\n"
 
-    def ac(self,price,miktar,karar,pos_list):
+    def ac(self,price,miktar,karar,pos_list,pozisyon_acma_araligi):
         #alis ya da satis pozisyonu acilir.
         self.price = price
         self.miktar = miktar
         self.state = karar
-
+        #TODO: pozisyon açma aralığına göre pozisyon açılacak.
+            
         self.id = order(self.ex, karar, miktar, price,self, pos_list)
-        logger.info("pozisyon order acildi: {id} {p} {kc} {s}", id=self.id, p=self.price, kc=self.kapa_count,s=self.state)
-
-    def kapa(self,price,pos_list,karar,pozisyon_kapama_araligi):
+        logger.info("pozisyon order acildi: id:{id}  |  price:{p}  |   kapa_count:{kc}  |   state:{s}", id=self.id, p=self.price, kc=self.kapa_count,s=self.state)
+    def kapa(self,price,pos_list,pozisyon_kapama_araligi):
         #alis ise fiyat ustu degerden satis yaparak pozisyon kapatilir.
         #kar =0
 
-        if(karar=="keep" and self.kapa_count<60):
-            self.kapa_count+=1
-            return False,self.kar
         if(self.state =="buy" and (self.price+float(pozisyon_kapama_araligi)<price) ):
             self.kar = self.karHesapla(price)
             order(self.ex,"sell",self.miktar,price,self,pos_list)
-            logger.info("pozisyon kapatiliyor: {id}  - {price} - {state} ",id=self.id,price=self.price,state=self.state)
+            logger.info("pozisyon kapatiliyor: id:{id}  |   price:{price}  |   state:{state} ",id=self.id,price=self.price,state=self.state)
             self.kapaniyor = True
             return True,self.kar
         elif(self.state=="sell" and (self.price-float(pozisyon_kapama_araligi)>price)):
             self.kar  = self.karHesapla(price)
             order(self.ex,"buy",self.miktar,price,self,pos_list)
-            logger.info("pozisyon kapatiliyor: {id}  - {price} - {state} ",id=self.id,price=self.price,state=self.state)
+            logger.info("pozisyon kapatiliyor: id:{id}  |   price:{price}  |   state:{state} ",id=self.id,price=self.price,state=self.state)
             self.kapaniyor = True
             return True,self.kar
         else:
             return False,self.kar
         
     def karHesapla(self,price):
+        print("kar hesapla: pozisyon acilis fiyatı:",self.price," pozisyon kapanis fiyatı:",price)
         kar = price*self.miktar - self.price*self.miktar
         if self.state=="sell":
             kar = (-1) * kar
         return kar
 class PositionList:
-    def __init__(self,ex,limit, pozisyon_acma_araligi,pozisyon_kapama_araligi):
+    def __init__(self,ex,limit, pozisyon_acma_araligi,pozisyon_kapama_araligi,db):
         self.list = []
         self.ex=ex
         self.limit = limit
         self.toplam_kar = 0
         self.pozisyon_acma_araligi=float(pozisyon_acma_araligi)
         self.pozisyon_kapama_araligi=float(pozisyon_kapama_araligi)
+        self.initPositionListByDB(db.get_positions())
+        self.db=db
+
+    def initPositionListByDB(self,positions):
+        for p in positions:
+            position = Position(self.ex)
+            position.id = p[1]
+            position.state = p[2]
+            position.price = p[3]
+            position.miktar = p[4]
+            position.kar = p[5]
+            self.list.append(position)
+        
+
     def pozisyonAc(self,price,miktar,karar):
         if(karar=="keep"):
             return
@@ -105,32 +117,33 @@ class PositionList:
         plasts = [pl for pl in self.list if pl.state == karar]
         if( len(plasts)==0 or (len(plasts)>0 and abs(plasts[-1].price-price)>self.pozisyon_acma_araligi)):
             logger.info("Pozisyon aciliyor:{karar} - {price} ", karar=karar, price=price)
-            p.ac(price,miktar,karar,self)
+            p.ac(price,miktar,karar,self, self.pozisyon_acma_araligi)
+            #self.db.insert_position(p.id, p.state, p.price, p.miktar, p.kar)
             #self.list.append(p)
-    def pozisyonKapat(self,price,karar):
+    def pozisyonKapat(self,price):
         kapandi = False
         k=0
         toplam_kar = 0
         for p in self.list:
             if not(p.kapaniyor): # eger kapanmadiysa kontrol et
-                d,k = p.kapa(price,self,karar, self.pozisyon_kapama_araligi)
+                d,k = p.kapa(price,self, self.pozisyon_kapama_araligi)
                 if(d):
                     kapandi = True
                     #logging.warning(msg="Pozisyon kapatılıyor:" + str(p)+"  ----   kar:"+str(k))
                     #break - break ediyoruz çünkü sadece 1 tanesini kapatsın. Ama eger kapaniyorsa hepsini kapatabilir. O fiyatla kapatabilecegi tum pozisyonlari kapatsın gitsin.
+                    #self.db.remove_position_by_id(p.id)
                 toplam_kar += k
         return kapandi,toplam_kar
     
     def evaluate(self,amount,price,karar):
         miktar = float(amount) / float(price)
-        print("miktar:",miktar)
-        kap,kar = self.pozisyonKapat(price,karar) # fiyat listedeki tüm pozisyonlara gönderilir. eğer istenen boyutta kar varsa pozisyonlar kapatilir. Eger kapanan varsa kar hesaplanir.
-        if(karar=="keep"):
-            #logger.info("Karar 'keep': islem yapilmadi")
-            return 0
+        print("Position evaluation - miktar:",miktar)
+        kap,kar = self.pozisyonKapat(price) # fiyat listedeki tüm pozisyonlara gönderilir. eğer istenen boyutta kar varsa pozisyonlar kapatilir. Eger kapanan varsa kar hesaplanir.
+        print("Position evaluation - kap: ",kap," karar:",karar)
         if (kap):
             return kar
         else:
+            print("Position evaluation - pozisyon acilma karari: ",len(self.list)," -  ", str(self.limit))
             if(len(self.list)<=int(self.limit)):
                 self.pozisyonAc(price,miktar,karar)
             return 0
@@ -140,10 +153,12 @@ class PositionList:
         if(position.kapaniyor==True):
             self.toplam_kar += position.kar
             self.list.remove(position)
+            self.db.remove_position_by_id(position.id)
             logger.info("pozisyon tamamlandı. listeden cikariliyor")
         else:
             logger.info("pozisyon acma tamamlandi")
             self.list.append(position)
+            self.db.insert_position(position.id, position.state, position.price, position.miktar, position.kar)
 
     def orderIptal(self,orderid):
         logger.info("order cancelled: {id}",id=str(orderid))

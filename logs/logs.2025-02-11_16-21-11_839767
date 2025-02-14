@@ -1,0 +1,163 @@
+2025-02-11 16:21:11.839 | INFO     | __main__:main:31 - Trading bot başlıyor
+2025-02-11 16:21:48.704 | INFO     | __main__:main:31 - Trading bot başlıyor
+2025-02-11 16:22:19.550 | INFO     | __main__:main:31 - Trading bot başlıyor
+2025-02-11 16:23:25.712 | INFO     | __main__:main:31 - Trading bot başlıyor
+2025-02-11 16:31:27.820 | INFO     | __main__:main:31 - Trading bot başlıyor
+2025-02-11 16:31:46.782 | INFO     | __main__:main:31 - Trading bot başlıyor
+2025-02-11 16:31:57.487 | INFO     | __main__:main:31 - Trading bot başlıyor
+2025-02-11 16:36:23.299 | INFO     | __main__:main:31 - Trading bot başlıyor
+2025-02-11 16:36:47.648 | INFO     | __main__:main:31 - Trading bot başlıyor
+2025-02-11 16:39:03.899 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 97472.745 
+2025-02-11 16:39:04.230 | INFO     | Position:ac:64 - pozisyon order acildi: id:3310807  |  price:97472.745  |   kapa_count:0  |   state:buy
+2025-02-11 16:39:13.137 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 97473.515 
+2025-02-11 16:39:13.451 | INFO     | Position:ac:64 - pozisyon order acildi: id:3310875  |  price:97473.515  |   kapa_count:0  |   state:buy
+2025-02-11 16:39:20.575 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 97473.515, buy
+2025-02-11 16:39:20.575 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   buy - 97473.515  - Kapa:False
+2025-02-11 16:39:20.576 | INFO     | Position:tam_kapat:159 - pozisyon acma tamamlandi
+2025-02-11 16:39:20.725 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 97472.745, buy
+2025-02-11 16:39:20.726 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   buy - 97472.745  - Kapa:False
+2025-02-11 16:39:20.726 | INFO     | Position:tam_kapat:159 - pozisyon acma tamamlandi
+2025-02-11 16:48:18.084 | INFO     | Position:kapa:79 - pozisyon kapatiliyor: id:2954466  |   price:97355.36499999999  |   state:sell 
+2025-02-11 16:48:18.390 | INFO     | Position:kapa:79 - pozisyon kapatiliyor: id:2954477  |   price:97355.36499999999  |   state:sell 
+2025-02-11 16:50:14.517 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 97355.36499999999, sell
+2025-02-11 16:50:14.517 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   sell - 97355.36499999999  - Kapa:True
+2025-02-11 16:50:14.520 | INFO     | Position:tam_kapat:157 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-11 16:50:16.705 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 97355.36499999999, sell
+2025-02-11 16:50:16.705 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   sell - 97355.36499999999  - Kapa:True
+2025-02-11 16:50:16.707 | INFO     | Position:tam_kapat:157 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-11 16:50:26.759 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 97226.58499999999 
+2025-02-11 16:50:27.517 | INFO     | Position:ac:64 - pozisyon order acildi: id:3314428  |  price:97226.58499999999  |   kapa_count:0  |   state:buy
+2025-02-11 16:50:50.992 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 97226.58499999999, buy
+2025-02-11 16:50:50.993 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   buy - 97226.58499999999  - Kapa:False
+2025-02-11 16:50:50.993 | INFO     | Position:tam_kapat:159 - pozisyon acma tamamlandi
+2025-02-11 16:54:40.243 | INFO     | Position:kapa:79 - pozisyon kapatiliyor: id:2935196  |   price:97139.785  |   state:sell 
+2025-02-11 16:54:40.550 | INFO     | Position:kapa:79 - pozisyon kapatiliyor: id:2935153  |   price:97140.22  |   state:sell 
+2025-02-11 16:54:41.300 | INFO     | Position:kapa:79 - pozisyon kapatiliyor: id:2935201  |   price:97139.655  |   state:sell 
+2025-02-11 16:54:41.572 | INFO     | Position:kapa:79 - pozisyon kapatiliyor: id:2935197  |   price:97139.70999999999  |   state:sell 
+2025-02-11 16:54:41.839 | INFO     | Position:kapa:79 - pozisyon kapatiliyor: id:2935200  |   price:97139.675  |   state:sell 
+2025-02-11 16:54:42.111 | INFO     | Position:kapa:79 - pozisyon kapatiliyor: id:2935202  |   price:97139.64499999999  |   state:sell 
+2025-02-11 16:54:42.378 | INFO     | Position:kapa:79 - pozisyon kapatiliyor: id:2935154  |   price:97139.93  |   state:sell 
+2025-02-11 16:54:43.210 | INFO     | Position:kapa:79 - pozisyon kapatiliyor: id:2935203  |   price:97139.32  |   state:sell 
+2025-02-11 16:55:26.198 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 97140.22, sell
+2025-02-11 16:55:26.201 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   sell - 97140.22  - Kapa:True
+2025-02-11 16:55:26.203 | INFO     | Position:tam_kapat:157 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-11 16:55:26.527 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 97139.93, sell
+2025-02-11 16:55:26.533 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   sell - 97139.93  - Kapa:True
+2025-02-11 16:55:26.534 | INFO     | Position:tam_kapat:157 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-11 16:55:26.835 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 97139.32, sell
+2025-02-11 16:55:26.842 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   sell - 97139.32  - Kapa:True
+2025-02-11 16:55:26.849 | INFO     | Position:tam_kapat:157 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-11 16:55:27.163 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 97139.785, sell
+2025-02-11 16:55:27.164 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   sell - 97139.785  - Kapa:True
+2025-02-11 16:55:27.164 | INFO     | Position:tam_kapat:157 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-11 16:55:28.417 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 97139.675, sell
+2025-02-11 16:55:28.417 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   sell - 97139.675  - Kapa:True
+2025-02-11 16:55:28.420 | INFO     | Position:tam_kapat:157 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-11 16:55:28.940 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 97139.70999999999, sell
+2025-02-11 16:55:28.941 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   sell - 97139.70999999999  - Kapa:True
+2025-02-11 16:55:28.943 | INFO     | Position:tam_kapat:157 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-11 16:55:29.123 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 97139.64499999999, sell
+2025-02-11 16:55:29.123 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   sell - 97139.64499999999  - Kapa:True
+2025-02-11 16:55:29.126 | INFO     | Position:tam_kapat:157 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-11 16:55:29.167 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 97139.655, sell
+2025-02-11 16:55:29.167 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   sell - 97139.655  - Kapa:True
+2025-02-11 16:55:29.169 | INFO     | Position:tam_kapat:157 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-11 16:55:33.080 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96938.13500000001 
+2025-02-11 16:55:33.351 | INFO     | Position:ac:64 - pozisyon order acildi: id:3316119  |  price:96938.13500000001  |   kapa_count:0  |   state:buy
+2025-02-11 16:55:43.424 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96938.545 
+2025-02-11 16:55:48.833 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96938.545 
+2025-02-11 16:55:54.002 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96938.545 
+2025-02-11 16:55:59.312 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96938.545 
+2025-02-11 16:56:03.939 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 96938.13500000001, buy
+2025-02-11 16:56:03.939 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   buy - 96938.13500000001  - Kapa:False
+2025-02-11 16:56:03.940 | INFO     | Position:tam_kapat:159 - pozisyon acma tamamlandi
+2025-02-11 16:56:49.536 | INFO     | Position:kapa:73 - pozisyon kapatiliyor: id:3316119  |   price:96938.13500000001  |   state:buy 
+2025-02-11 16:57:57.311 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 96938.13500000001, buy
+2025-02-11 16:57:57.312 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   buy - 96938.13500000001  - Kapa:True
+2025-02-11 16:57:57.320 | INFO     | Position:tam_kapat:157 - pozisyon tamamlandı. listeden cikariliyor
+2025-02-11 16:58:00.435 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96955.33 
+2025-02-11 16:58:00.743 | INFO     | Position:ac:64 - pozisyon order acildi: id:3317005  |  price:96955.33  |   kapa_count:0  |   state:buy
+2025-02-11 16:58:38.023 | INFO     | Position:checkOrderThread:24 - order tamamlandı: 96955.33, buy
+2025-02-11 16:58:38.023 | INFO     | Position:tam_kapat:152 - tamamlanan pozisyon:   buy - 96955.33  - Kapa:False
+2025-02-11 16:58:38.023 | INFO     | Position:tam_kapat:159 - pozisyon acma tamamlandi
+2025-02-11 17:01:10.512 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96754.26 
+2025-02-11 17:01:16.657 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96754.26 
+2025-02-11 17:01:23.153 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96653.945 
+2025-02-11 17:01:28.844 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96653.945 
+2025-02-11 17:01:34.066 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96653.965 
+2025-02-11 17:01:38.579 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96653.965 
+2025-02-11 17:01:45.224 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96715.215 
+2025-02-11 17:01:49.377 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96715.215 
+2025-02-11 17:01:55.263 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96733.06 
+2025-02-11 17:02:01.636 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96733.06 
+2025-02-11 17:02:08.373 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96733.32500000001 
+2025-02-11 17:02:12.775 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96733.32500000001 
+2025-02-11 17:02:17.996 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96733.32500000001 
+2025-02-11 17:02:22.809 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96733.32500000001 
+2025-02-11 17:02:29.260 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96744.13 
+2025-02-11 17:02:33.559 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96744.13 
+2025-02-11 17:02:38.162 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96741.265 
+2025-02-11 17:02:43.926 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96741.265 
+2025-02-11 17:02:50.663 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96713.995 
+2025-02-11 17:02:57.830 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96716.785 
+2025-02-11 17:03:03.026 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96724.495 
+2025-02-11 17:03:10.065 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96720.845 
+2025-02-11 17:03:16.057 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96716.825 
+2025-02-11 17:03:21.689 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96713.92 
+2025-02-11 17:03:29.265 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96710.745 
+2025-02-11 17:03:34.899 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96710.745 
+2025-02-11 17:03:41.145 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96710.91500000001 
+2025-02-11 17:03:48.591 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96710.745 
+2025-02-11 17:03:52.922 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96710.745 
+2025-02-11 17:03:58.069 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96711.36 
+2025-02-11 17:04:03.701 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96710.745 
+2025-02-11 17:04:10.783 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96710.745 
+2025-02-11 17:04:17.276 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96710.745 
+2025-02-11 17:04:22.678 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96710.745 
+2025-02-11 17:04:27.124 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96712.255 
+2025-02-11 17:04:33.577 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96713.765 
+2025-02-11 17:04:38.900 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96711.04500000001 
+2025-02-11 17:04:45.454 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96711.04500000001 
+2025-02-11 17:04:51.346 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96711.04000000001 
+2025-02-11 17:04:56.616 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96711.04000000001 
+2025-02-11 17:05:03.783 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96685.07500000001 
+2025-02-11 17:05:10.133 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96685.07500000001 
+2025-02-11 17:05:17.710 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96683.31 
+2025-02-11 17:05:24.059 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96681.70999999999 
+2025-02-11 17:05:30.204 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96669.945 
+2025-02-11 17:05:37.678 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96669.565 
+2025-02-11 17:05:44.130 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96673.4 
+2025-02-11 17:05:51.521 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96677.795 
+2025-02-11 17:05:56.379 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96694.84 
+2025-02-11 17:06:01.333 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96694.965 
+2025-02-11 17:06:06.072 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96694.05 
+2025-02-11 17:06:10.944 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96694.05 
+2025-02-11 17:06:16.106 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96670.27 
+2025-02-11 17:06:21.199 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96670.27 
+2025-02-11 17:06:26.829 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96669.57500000001 
+2025-02-11 17:06:33.387 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96674.32500000001 
+2025-02-11 17:06:38.936 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96679.17499999999 
+2025-02-11 17:06:44.362 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96679.15 
+2025-02-11 17:06:49.656 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96679.15 
+2025-02-11 17:06:55.718 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96679.17499999999 
+2025-02-11 17:07:01.556 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96669.57500000001 
+2025-02-11 17:07:07.747 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96660.38 
+2025-02-11 17:07:13.662 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96660.38 
+2025-02-11 17:07:19.066 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96655.22 
+2025-02-11 17:07:24.689 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96655.22 
+2025-02-11 17:07:30.186 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96655.2 
+2025-02-11 17:07:36.504 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96656.545 
+2025-02-11 17:07:41.379 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96648.995 
+2025-02-11 17:07:46.909 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96652.98000000001 
+2025-02-11 17:07:52.016 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96666.08499999999 
+2025-02-11 17:07:57.627 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96668.60500000001 
+2025-02-11 17:08:04.165 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96669.565 
+2025-02-11 17:08:10.559 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96669.565 
+2025-02-11 17:08:32.680 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96690.525 
+2025-02-11 17:08:37.395 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96690.525 
+2025-02-11 17:08:43.668 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96690.81 
+2025-02-11 17:08:49.579 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96691.095 
+2025-02-11 17:08:54.799 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96704.64499999999 
+2025-02-11 17:09:00.740 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96704.64499999999 
+2025-02-11 17:09:06.372 | INFO     | Position:pozisyonAc:119 - Pozisyon aciliyor:buy - 96708.235 
+2025-02-12 09:55:00.169 | INFO     | __main__:main:31 - Trading bot başlıyor

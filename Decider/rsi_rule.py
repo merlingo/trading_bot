@@ -4,14 +4,17 @@ class Rsi_Rule:
         self.max = max
 
     def decide(self, data):
-        print("Data: ", data)
-        print("Min: ", self.min, " - Max: ", self.max)
+        print("RSI Rule - Data: ", data)
+        print("RSI Rule - Min: ", self.min, " - Max: ", self.max)
+        decision=""
         if(float(data)>=float(self.max)):
-            return "sell"
+            decision= "sell"
         elif(float(data)<=float(self.min)):
-            return "buy"
+            decision= "buy"
         else:
-            return "keep"
+            decision= "keep"
+        print("RSI Rule - Decision: ", decision)
+        return decision
     def get_min(self):
         return self.min
     def get_max(self):

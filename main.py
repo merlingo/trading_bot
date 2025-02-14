@@ -8,12 +8,14 @@ import tkinter as tk
 from tkinter import ttk
 import threading
 import time
+from localdb import LocalDB
+
 
 def main():
     #read config file
     env_file_path = '.env_variable_file'
     env_vars = read_env_file(env_file_path)
-
+    db = LocalDB()  # Create an instance of LocalDB
     #print(env_vars)
     #initialize Market Decider PositionList Logger  and Gui
     exchange_id = 'binance'
@@ -21,14 +23,17 @@ def main():
     market = Market(exchange_id, env_vars['APIKEY'], env_vars['SECRET_KEY'], symbol)
     #print(market.get_rsi(100))
     #return
-    plist = PositionList(market.exchange,env_vars['LIMIT'], env_vars['POZISYON_ACMA_ARALIGI'], env_vars['POZISYON_KAPAMA_ARALIGI'])
+    #db test verisi position ekleme
+    #db.insert_position("1","buy", 100, 100, 0)
+    #db.remove_all_positions()
+    plist = PositionList(market.exchange,env_vars['LIMIT'], env_vars['POZISYON_ACMA_ARALIGI'], env_vars['POZISYON_KAPAMA_ARALIGI'],db)
     logger.add(env_vars['PWD']+"/logs/logs", rotation="12:00")  # New file is created each day at noon
     logger.info("Trading bot başlıyor")
 
     decider = Rsi_Rule(min,max)
 
     root = tk.Tk()
-    app = TradingBotGUI(root, market, plist, decider, [env_vars['SPOT_ASSET'],"USDT"],env_vars['AMOUNT'])
+    app = TradingBotGUI(root, market, plist, decider, [env_vars['SPOT_ASSET'],"USDT"])
     root.mainloop()
 
 if __name__ == "__main__":
